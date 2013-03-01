@@ -1,3 +1,6 @@
+[B]1.0.1[/B]
+- updated upstream URLs.
+
 [B]1.0.0[/B]
 - first release
 
