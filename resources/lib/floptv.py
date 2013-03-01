@@ -40,21 +40,14 @@ class FlopTV:
             video["duration"] = videoNode.getElementsByTagName('durata')[0].childNodes[0].data
             # [TODO] pubdate missing
             video["thumb"] = self.getThumbURL(videoId)
-            video["url"] = self.getVideoURL(videoId)
+            video["url"] = videoNode.getElementsByTagName('url3g')[0].childNodes[0].data
             videos.append(video)
             
         return videos
 
-    def getVideoURL(self, videoId):
-        # Samsung Smart TV
-        url = "http://85.94.205.192/floptv.tv/nettv/%s.mp4" % videoId
-        # Android URL
-        #url = "http://85.94.205.192/floptv.tv/fds_512/%s.mp4" % videoId
-        return url
-
     def getThumbURL(self, videoId):
-        #url = "http://85.94.205.192/floptv.tv/Images/%s/original_thumbnail.jpeg" % videoId
-        url = "http://85.94.205.192/floptv.tv/Images/%s/xl_thumbnail.jpeg" % videoId
+        #url = "http://floptv.cdn.crosscast-system.com/Images/%s/xl_thumbnail.jpeg" % videoId
+        url = "http://floptv.cdn.crosscast-system.com/Images/%s/original_thumbnail.jpeg" % videoId
         return url
 
     def getPosterURL(self, videoId):
