@@ -1,4 +1,5 @@
 import sys
+import re
 import urllib
 import urllib2
 import httplib
@@ -37,20 +38,15 @@ class FlopTV:
                 video["description"] = videoNode.getElementsByTagName('descrizione')[0].childNodes[0].data.strip()
             except IndexError:
                video["description"] = ""
-            video["duration"] = videoNode.getElementsByTagName('durata')[0].childNodes[0].data
+            # [TODO] parse duration
             # [TODO] pubdate missing
-            video["thumb"] = self.getThumbURL(videoId)
+            thumb = videoNode.getElementsByTagName('thumb')[0].childNodes[0].data
+            match = re.compile("img=(.+?)&").findall(thumb)
+            if match:
+                video["thumb"] = match[0]
+            else:
+                video["thumb"] = None
             video["url"] = videoNode.getElementsByTagName('url3g')[0].childNodes[0].data
             videos.append(video)
             
         return videos
-
-    def getThumbURL(self, videoId):
-        #url = "http://floptv.cdn.crosscast-system.com/Images/%s/xl_thumbnail.jpeg" % videoId
-        url = "http://floptv.cdn.crosscast-system.com/Images/%s/original_thumbnail.jpeg" % videoId
-        return url
-
-    def getPosterURL(self, videoId):
-        # NB: Not all videos have a poster!
-        url = "http://www.floptv.tv/feeds/iphone/img/video/%s.jpg" % videoId
-        return url        

@@ -50,7 +50,6 @@ def show_video_files(showId):
         liStyle.setInfo(type="video",
             infoLabels={"Tvshowtitle": item["tvshowtitle"], 
                         "Title": item["title"],
-                        "Duration": item["duration"],
                         "Plot": item["description"]
                         })
         addLinkItem(item["url"], liStyle)
