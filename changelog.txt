@@ -1,3 +1,7 @@
+[B]1.0.2[/B]
+- avoid parsing duration
+- get thumbnail directly from API
+
 [B]1.0.1[/B]
 - updated upstream URLs.
 
